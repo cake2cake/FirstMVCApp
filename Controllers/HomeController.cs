@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FirstMVCApp.Controllers
@@ -26,6 +27,43 @@ namespace FirstMVCApp.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Reverse()
+        {
+            Palindrome palindrome = new();
+            
+            return View(palindrome);
+        }
+        [HttpPost]
+        public IActionResult Reverse(Palindrome palindrome)
+        {
+            string inputWord = palindrome.InputWord;
+            string revWord = "";
+
+            if (palindrome.InputWord == null) return View(palindrome);
+
+            for (int i=inputWord.Length-1; i>0; i--)
+            {
+                revWord += inputWord[i];
+            }
+
+            palindrome.RevWord = revWord;
+
+            inputWord = Regex.Replace(inputWord.ToLower(), "[^a-zA-Z0-9]+", "");
+            revWord = Regex.Replace(revWord.ToLower(), "[^a-zA-Z0-9]+", "");
+            if (revWord==inputWord)
+            {
+                palindrome.IsPalindrome = true; 
+                palindrome.Message = "is a Palindrome!";
+            } 
+            else
+            {
+                palindrome.IsPalindrome = false;
+                palindrome.Message = "is NOT a Palindrome!";
+            }
+            return View(palindrome);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

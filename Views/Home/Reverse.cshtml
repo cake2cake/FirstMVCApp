@@ -1,0 +1,59 @@
+﻿@model FirstMVCApp.Models.Palindrome;
+@{
+    ViewData["Title"] = "Palindrome";
+
+}
+
+<div class="row">
+    <div class="col-12 col-lg-7">
+        <div class="card mt-5">
+            <div class="card-header text-center py-2"><h2 class="text-primary">Palindrome 迴文</h2></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        A palindrome is a word, number, phrase, or other sequence of characters which reads the same backward as forward, such as madam or racecar. There are also numeric palindromes, including date/time stamps using short digits 11/11/11 11:11 and long digits 02/02/2020. Sentence-length palindromes ignore capitalization, punctuation, and word boundaries.
+                    </div>
+                    <div class="col">「迴文」。中文當中是指倒正著念和反著念都相同的句子，前後對稱，例如「上海自來水來自海上」。英文當中是指正著看和反著看都相同的單字，例如「 madam 」。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-5">
+        <div class="card mt-5 shadow-sm">
+            <div class="card-header text-center py-2"><h2 class="text-primary">Try it out</h2></div>
+            <div class="card-body">
+                <form asp-action="reverse" asp-controller="home" method="post">
+                    <div class="">
+                        <lable class="form-label" for="inputWord">Input Word</lable>
+                        <input class="form-control" type="text" asp-for="InputWord" value="@Model.InputWord" placeholder="Input word" id="inputWord" autofocus autocomplete="on" />
+                    </div>
+                    
+                    @if (Model.IsPalindrome && Model.InputWord != null)
+                    {
+                        <div class="alert alert-primary text-center mt-3">
+                            <span class="text-success fw-bold">@Model.InputWord</span>  @Model.Message
+                        </div>
+                    }
+                    else if (Model.InputWord != null)
+                    {
+                        <div class="alert alert-danger text-center mt-3">
+                            <span class="text-danger fw-bold">@Model.InputWord</span>  @Model.Message
+                        </div>
+                    }
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="my-3 btn btn-outline-primary">Check palindrome</button>
+                    </div>
+                </form>
+            </div>
+            
+
+        <div class="card-footer">
+            The Reverse of the input word is: <span class="text-warning fw-bold">@Model.RevWord</span>
+        </div>
+
+        </div>
+
+    </div>
+
+</div>
