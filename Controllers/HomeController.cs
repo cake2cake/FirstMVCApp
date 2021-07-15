@@ -29,6 +29,8 @@ namespace FirstMVCApp.Controllers
             return View();
         }
 
+        //Palindrome Exercise
+
         [HttpGet]
         public IActionResult Reverse()
         {
@@ -37,6 +39,7 @@ namespace FirstMVCApp.Controllers
             return View(palindrome);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Reverse(Palindrome palindrome)
         {
             string inputWord = palindrome.InputWord;
@@ -64,6 +67,21 @@ namespace FirstMVCApp.Controllers
                 palindrome.Message = "is NOT a Palindrome!";
             }
             return View(palindrome);
+        }
+
+        //FizzBuzz Exercise 
+        [HttpGet]
+        public IActionResult FizzBuzz()
+        {
+            FizzBuzz fizzBuzz = new();
+            return View(fizzBuzz);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FizzBuzz(FizzBuzz fizzBuzz)
+        {
+            return View(fizzBuzz);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

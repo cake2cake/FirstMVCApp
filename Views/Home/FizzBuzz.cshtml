@@ -1,0 +1,51 @@
+﻿@model FirstMVCApp.Models.FizzBuzz
+@{
+    ViewData["Title"] = "Fizz Buzz";
+
+}
+
+<div class="row">
+    <div class="col-12 col-lg-7">
+        <div class="card mt-1 mt-md-5">
+            <div class="card-header text-center py-2"><h2 class="text-primary">Fizz Buzz</h2></div>
+            <div class="card-body">
+                <div >
+                    FizzBuzz is a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”."
+                </div>
+                <div class="blockquote mt-4">
+                    This program lets you change the Fizz number and Buzz number.
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-5">
+        <div class="card mt-3 mt-md-5 shadow-sm">
+            <div class="card-header text-center py-2"><h2 class="text-primary">Try it out</h2></div>
+            <div class="card-body">
+                <form asp-action="FizzBuzz" asp-controller="home" method="post" class="row justify-content-around">
+                    <div class="col-4">
+                        <lable class="form-label" for="input1">Fizz Value</lable>
+                        <input class="form-control fs-1 text-center" type="number" asp-for="FizzValue" value="@Model.FizzValue" placeholder="Input word" id="input1" autofocus autocomplete="on" />
+                    </div>
+                    <div class="col-4">
+                        <lable class="form-label" for="input2">Buzz Value</lable>
+                        <input class="form-control fs-1 text-center" type="number" asp-for="BuzzValue" value="@Model.BuzzValue" placeholder="Input word" id="input2" autofocus autocomplete="on" />
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="my-3 btn btn-outline-primary">Check Result</button>
+                    </div>
+                </form>
+            </div>
+            
+
+        <div class="card-footer">
+            <h6>Printing result with Fizz = @Model.FizzValue and Buzz = @Model.BuzzValue</h6>
+        </div>
+
+        </div>
+
+    </div>
+
+</div>
