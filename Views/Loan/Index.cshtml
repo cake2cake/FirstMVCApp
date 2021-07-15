@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Loan Calculator";
+}
+@model FirstMVCApp.Models.Loan;
+
+
+    <div class="text-center">
+        <h1 class="pt-4 fw-light text-uppercase">Mortgage Loan Calculator</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-4 bg-light border-end">            
+            <form class="p-3 d-flex flex-column align-content-center justify-content-between">
+                <div class="row mb-2 ">
+                    <label class="col-7 " for="input1">Loan Amount</label>
+                    <input type="number" class="col-5 " name="input1" />
+                </div>
+                <div class="row mb-2">
+                    <label class="col-7 " for="input2">Term (Months)</label>
+                    <input type="number" class="col-5 " name="input2" />
+                </div>
+                <div class="row mb-2">
+                    <label class="col-7 " for="input3">Interest Rate</label>
+                    <input type="number" class="col-5 " name="input3" />
+                </div>
+                <div class="my-3 d-flex justify-content-end">                    
+                    <button type="submit" class="btn btn-outline-dark ">Calculate</button>
+                </div>
+            </form>
+        
+        </div>
+        <div class="col-12 col-lg-8 bg-light h-100 px-3 pb-5">
+            <div class="text-center ">
+                <h1 class="display-5 mt-3">Your Monthly Payments</h1>
+                <h1 class="display-5 my-3">$471.78</h1>
+            </div>
+            <div class="d-flex justify-content-between px-5">
+                <span>Total Principal</span><span>$25,000.00</span>
+            </div>
+            <div class="d-flex justify-content-between px-5">
+                <span>Total Interest</span><span>$3,000.00</span>
+            </div>
+            <div class="d-flex justify-content-between px-5">
+                <span>Total Cost</span><span>$28,000.00</span>
+            </div>
+
+        </div>
+    </div>
+
+
+
+

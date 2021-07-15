@@ -28,6 +28,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="FizzBuzz">FizzBuzz</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Loan" asp-action="Index">Loan Calculator</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="Index">Movies</a>
                         </li>
                         <li class="nav-item">
@@ -50,7 +53,7 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap5/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap5/dist/js/bootstrap.bundle.js"></script>                 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
