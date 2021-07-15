@@ -74,6 +74,8 @@ namespace FirstMVCApp.Controllers
         public IActionResult FizzBuzz()
         {
             FizzBuzz fizzBuzz = new();
+            fizzBuzz.FizzValue = 3;
+            fizzBuzz.BuzzValue = 5;
             return View(fizzBuzz);
         }
 
@@ -81,6 +83,52 @@ namespace FirstMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult FizzBuzz(FizzBuzz fizzBuzz)
         {
+            int startValue = 1;
+            int endValue = 100;
+            fizzBuzz.Result = new();
+
+            if (fizzBuzz.FizzValue < 1 || fizzBuzz.BuzzValue < 1) return View(fizzBuzz);
+
+            int fizzbuzzValue; 
+
+            if (fizzBuzz.FizzValue == fizzBuzz.BuzzValue)
+            {
+                fizzbuzzValue = fizzBuzz.FizzValue;
+            } 
+            else if (fizzBuzz.FizzValue % fizzBuzz.BuzzValue == 0)
+            {
+                fizzbuzzValue = fizzBuzz.FizzValue;
+            }
+            else if (fizzBuzz.BuzzValue % fizzBuzz.FizzValue == 0)
+            {
+                fizzbuzzValue = fizzBuzz.BuzzValue;
+            }
+            else
+            {
+                fizzbuzzValue = fizzBuzz.FizzValue* fizzBuzz.BuzzValue;
+            }
+            
+
+            for (var i = startValue; i<= endValue; i++)
+            {                                
+                if (i % fizzbuzzValue == 0)
+                {
+                    fizzBuzz.Result.Add("FizzBuzz");
+                } 
+                else if (i % fizzBuzz.FizzValue == 0)
+                {
+                    fizzBuzz.Result.Add("Fizz");
+                }
+                else if (i % fizzBuzz.BuzzValue == 0)
+                {
+                    fizzBuzz.Result.Add("Buzz");
+                } else
+                {
+                    //fizzBuzz.Result.Add(i.ToString());
+                    fizzBuzz.Result.Add(i.ToString());
+                }                
+            }            
+            
             return View(fizzBuzz);
         }
 

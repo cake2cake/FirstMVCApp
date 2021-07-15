@@ -9,7 +9,7 @@
         <div class="card mt-1 mt-md-5">
             <div class="card-header text-center py-2"><h2 class="text-primary">Fizz Buzz</h2></div>
             <div class="card-body">
-                <div >
+                <div>
                     FizzBuzz is a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”."
                 </div>
                 <div class="blockquote mt-4">
@@ -26,11 +26,15 @@
                 <form asp-action="FizzBuzz" asp-controller="home" method="post" class="row justify-content-around">
                     <div class="col-4">
                         <lable class="form-label" for="input1">Fizz Value</lable>
-                        <input class="form-control fs-1 text-center" type="number" asp-for="FizzValue" value="@Model.FizzValue" placeholder="Input word" id="input1" autofocus autocomplete="on" />
+                        <input class="form-control fs-1 text-center" type="number" asp-for="FizzValue" value="@Model.FizzValue"
+                               id="input1" autofocus
+                               min="1" max="100" required />
                     </div>
                     <div class="col-4">
                         <lable class="form-label" for="input2">Buzz Value</lable>
-                        <input class="form-control fs-1 text-center" type="number" asp-for="BuzzValue" value="@Model.BuzzValue" placeholder="Input word" id="input2" autofocus autocomplete="on" />
+                        <input class="form-control fs-1 text-center" type="number" asp-for="BuzzValue" value="@Model.BuzzValue"
+                               id="input2" autofocus
+                               min="1" max="100" required />
                     </div>
 
                     <div class="d-flex justify-content-end">
@@ -38,11 +42,39 @@
                     </div>
                 </form>
             </div>
-            
 
-        <div class="card-footer">
-            <h6>Printing result with Fizz = @Model.FizzValue and Buzz = @Model.BuzzValue</h6>
-        </div>
+
+            <div class="card-footer">
+
+                @if (Model.Result != null)
+                {
+                    <h6>Printing result with Fizz = @Model.FizzValue and Buzz = @Model.BuzzValue</h6>
+                    <div class="row row-cols-5">
+                        @foreach (var output in @Model.Result)
+                        {
+                        <div class="col text-end pe-2">
+                            @if (output == "FizzBuzz")
+                            {
+                                <span class="badge rounded-pill bg-warning text-dark">@output</span>
+                            }
+                            else if (output == "Fizz")
+                            {
+                                <span class="badge rounded-pill bg-primary">@output</span>
+                            }
+                            else if (output == "Buzz")
+                            {
+                                <span class="badge rounded-pill bg-danger">@output</span>
+                            }
+                            else
+                            {
+                                <span>@output</span>
+                            }
+                        </div>
+                        }
+                    </div>
+                }
+            </div>
+
 
         </div>
 
