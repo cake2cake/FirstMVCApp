@@ -4,48 +4,92 @@
 @model FirstMVCApp.Models.Loan;
 
 
-    <div class="text-center">
-        <h1 class="pt-4 fw-light text-uppercase">Mortgage Loan Calculator</h1>
+<div class="text-center">
+    <h1 class="pt-4 fw-light text-uppercase">Mortgage Loan Calculator</h1>
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-4 bg-light border-end">
+        <form class="p-3 d-flex flex-column align-content-center justify-content-between"
+              asp-action="index" asp-controller="loan" method="POST">
+            <div class="row mb-2 ">
+                <div class="input-group">
+                    <label class="col-5 ">Loan Amount</label>
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" asp-for="Amount" value="@(string.Format("{0:N}", Model.Amount))" />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="input-group">
+                    <label class="col-5">Term (Months)</label>
+                    <input type="number" class="form-control text-end" asp-for="Term" value="@Model.Term" />
+                    <span class="input-group-text col-3">Months</span>
+                </div>
+
+            </div>
+            <div class="row ">
+                <div class="input-group">
+                    <label class="form-label col-5">Interest Rate</label>
+                    <input type="number" step="0.1" class="form-control text-end" asp-for="InterestRate" value="@Model.InterestRate" />
+                    <span class="input-group-text col-3">%</span>
+
+                </div>
+            </div>
+            <div class="my-3 d-flex justify-content-end">
+                <button type="submit" class="btn btn-outline-dark ">Calculate</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-12 col-lg-8 h-100 px-3 pb-5 loanLogo">
+        <div class="text-center ">
+            <h1 class="display-5 mt-3">Your Monthly Payments</h1>
+            <h1 class="display-5 my-3">$@Model.MonthlyPayment.ToString("N2")</h1>
+        </div>
+        <div class="d-flex justify-content-between px-5">
+            <span>Total Principal</span><span>$@Model.TotalPrincipal.ToString("N2")</span>
+        </div>
+        <div class="d-flex justify-content-between px-5">
+            <span>Total Interest</span><span>$@Model.TotalInterest.ToString("N2")</span>
+        </div>
+        <div class="d-flex justify-content-between px-5">
+            <span>Total Cost</span><span>$@Model.TotalCost.ToString("N2")</span>
+        </div>
+
+    </div>
+</div>
+
+@if (Model.PaymentSchedule.Count > 0)
+{
+    <div class="flex-grow-1">
+        <table class="table table-striped table-responsive ">
+            <thead class="table-dark">
+                <tr>
+                    <th>Month</th>
+                    <th>Payment</th>
+                    <th>Principal</th>
+                    <th>Interest</th>
+                    <th>Total Interest</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var lp in Model.PaymentSchedule)
+                {
+                    <tr>
+                        <td>@lp.MonthNumber</td>
+                        <td>@lp.Payment.ToString("N2")</td>
+                        <td>@lp.Principal.ToString("N2")</td>
+                        <td>@lp.Interest.ToString("N2")</td>
+                        <td>@lp.InterestRunningTotal.ToString("N2")</td>
+                        <td>@lp.Balance.ToString("N2")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 
-    <div class="row">
-        <div class="col-12 col-lg-4 bg-light border-end">            
-            <form class="p-3 d-flex flex-column align-content-center justify-content-between">
-                <div class="row mb-2 ">
-                    <label class="col-7 " for="input1">Loan Amount</label>
-                    <input type="number" class="col-5 " name="input1" />
-                </div>
-                <div class="row mb-2">
-                    <label class="col-7 " for="input2">Term (Months)</label>
-                    <input type="number" class="col-5 " name="input2" />
-                </div>
-                <div class="row mb-2">
-                    <label class="col-7 " for="input3">Interest Rate</label>
-                    <input type="number" class="col-5 " name="input3" />
-                </div>
-                <div class="my-3 d-flex justify-content-end">                    
-                    <button type="submit" class="btn btn-outline-dark ">Calculate</button>
-                </div>
-            </form>
-        
-        </div>
-        <div class="col-12 col-lg-8 bg-light h-100 px-3 pb-5">
-            <div class="text-center ">
-                <h1 class="display-5 mt-3">Your Monthly Payments</h1>
-                <h1 class="display-5 my-3">$471.78</h1>
-            </div>
-            <div class="d-flex justify-content-between px-5">
-                <span>Total Principal</span><span>$25,000.00</span>
-            </div>
-            <div class="d-flex justify-content-between px-5">
-                <span>Total Interest</span><span>$3,000.00</span>
-            </div>
-            <div class="d-flex justify-content-between px-5">
-                <span>Total Cost</span><span>$28,000.00</span>
-            </div>
-
-        </div>
-    </div>
+}
 
 
 

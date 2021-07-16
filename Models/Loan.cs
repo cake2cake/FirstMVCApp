@@ -13,6 +13,7 @@ namespace FirstMVCApp.Models
         
         // Interest Rate
         public decimal InterestRate { get; set; }
+        public decimal MonthlyPayment { get; set; }
         public decimal TotalPrincipal { get; set; }
         public decimal TotalInterest { get; set; }
         public decimal TotalCost { get; set; }

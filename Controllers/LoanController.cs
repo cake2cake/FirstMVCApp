@@ -14,8 +14,22 @@ namespace FirstMVCApp.Controllers
         public IActionResult Index()
         {
             Loan loan = new();
+            loan.Amount = 25000;
+            loan.InterestRate = 5m;
+            loan.Term = 60;
+
             
             return View(loan);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(Loan loan)
+        {
+            Loan thisLoan = new();
+            LoanCalculatorHelper loanHelper = new();
+            thisLoan = loanHelper.CalcPaymentSchedule(loan);
+            return View(thisLoan);
         }
 
     }

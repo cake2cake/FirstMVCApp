@@ -12,6 +12,14 @@ a {
   color: #0366d6;
 }
 
+.loanLogo {
+    background-image: url(/img/shark.svg);
+    background-size: contain;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
